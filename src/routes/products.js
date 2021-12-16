@@ -1,13 +1,15 @@
 import express from 'express';
-import Contenedor from '../classes/Contenedor.js';
+// import Contenedor from '../classes/Contenedor.js';
 import upload from '../services/uploader.js';
 import {io} from '../app.js';
 import { authAdmin }  from '../utils.js'
 import Products from '../services/Products.js'
+import { mariadb } from '../config.js'
 
 const router = express.Router();
-const contenedor  = new Contenedor();
-const productService = new Products();
+// const contenedor  = new Contenedor();
+const productService = new Products(mariadb, 'products');
+
 
 //GETS
 router.get('/',(req,res)=>{

@@ -5,3 +5,16 @@ export const sqlite = knex({
     client:'sqlite3',
     connection:{filename:__dirname+'/db/backend.sqlite'}
 })
+
+export const mariadb = knex({
+    client: 'mysql',
+    version: '10.4.22',
+    connection: {
+    host: '127.0.0.1',
+    port: 3306,
+    user: 'root',
+    password: '',
+    database: 'coderecommerce'
+    },
+    pool: { min: 0, max: 10 }
+})
