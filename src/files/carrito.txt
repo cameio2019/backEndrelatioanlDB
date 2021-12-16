@@ -1,0 +1,27 @@
+[
+  [
+    {
+      "id": 1,
+      "timestamp": "2021-12-11T03:26:41.076Z",
+      "products": [
+        null,
+        null
+      ]
+    },
+    {
+      "id": 2,
+      "timestamp": "2021-12-11T03:26:42.740Z",
+      "products": []
+    },
+    {
+      "id": 3,
+      "timestamp": "2021-12-11T03:26:43.428Z",
+      "products": []
+    }
+  ],
+  {
+    "id": null,
+    "timestamp": "2021-12-14T20:41:11.844Z",
+    "products": []
+  }
+]
