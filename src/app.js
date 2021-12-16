@@ -7,9 +7,9 @@ import carritoRouter from './routes/carrito.js';
 import upload from './services/uploader.js';
 import __dirname from './utils.js';
 import {Server} from 'socket.io';
-import { authAdmin}  from './utils.js'
-import Products from './services/Products.js'
-import { sqlite } from './config.js'
+import { authAdmin}  from './utils.js';
+import Products from './services/Products.js';
+import { sqlite } from './config.js';
 
 
 const app = express();

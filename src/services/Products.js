@@ -8,7 +8,7 @@ export default class Products{
         if (table ==='products'){
         this.database.schema.hasTable('products').then(result=>{
             if(!result){
-                this.schema.createTable('products',table=>{
+                this.database.schema.createTable('products',table=>{
                     table.increments();
                     table.string('name').notNullable();
                     table.string('title').notNullable();
