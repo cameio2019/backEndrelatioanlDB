@@ -17,6 +17,11 @@ router.get('/',(req,res)=>{
         res.send(result);
     })
 })
+router.get('/',(req,res)=>{
+    productService.getMessages().then(result=>{
+        res.send(result);
+    })
+})
 router.get('/:pid',(req,res)=>{
     let id = parseInt(req.params.pid);
     productService.getProdById(id).then(result=>{
@@ -24,30 +29,38 @@ router.get('/:pid',(req,res)=>{
     })
 })
 //POSTS
-/* router.post('/',upload.single('thumbnail'),authAdmin,(req,res)=>{
-    let file = req.file;
+// router.post('/',upload.single('thumbnail'),authAdmin,(req,res)=>{
+//     let file = req.file;
+//     let prod = req.body;
+//     prod.thumbnail = `${req.protocol}://${req.hostname}:${8080}/uploads/${file.filename}`;
+//     productService.registrarProd(prod).then(result=>{
+//         if (result.status === 'success') res.status(200).json(result)
+//         else res.status(500).send(result)
+//         })
+//     })
+
+router.post('/',(req,res)=>{
     let prod = req.body;
-    prod.thumbnail = `${req.protocol}://${req.hostname}:${8080}/uploads/${file.filename}`;
+    if(!prod.name) return res.send({status:"error",message:"Error Datos Incompletos."})
     productService.registrarProd(prod).then(result=>{
-        if (result.status === 'success') res.status(200).json(result)
-        else res.status(500).send(result)
-        })
-    }) */
+        res.send(result);
+    })
+}) 
 
-    router.post('/',(req,res)=>{
-        let prod = req.body;
-        if(!prod.name) return res.send({status:"error",message:"datos incompletos"})
-        productService.registrarProd(prod).then(result=>{
-            res.send(result);
-        })
-    })    
+router.post('/',(req,res)=>{
+    let message = req.body;
+    if(!prod.email) return res.send({status:"error",message:"Error Datos Incompletos."})
+    productService.saveMessage(message).then(result=>{
+        res.send(result);
+    })
+}) 
 
 
-router.put('/',(req,res)=>{
+router.put('/:id', authAdmin,(req,res)=>{
     let prod = req.body;
     console.log(prod);
     const id = Number(req.params.id)
-    productService.updateProduct(id, product).then(result => {
+    productService.updateProduct(id, prod).then(result => {
         if (result.status === 'success') res.status(200).json(result)
         else res.status(500).send(result)
     })
