@@ -24,7 +24,7 @@ router.get('/:pid',(req,res)=>{
     })
 })
 //POSTS
-router.post('/',upload.single('thumbnail'),authAdmin,(req,res)=>{
+/* router.post('/',upload.single('thumbnail'),authAdmin,(req,res)=>{
     let file = req.file;
     let prod = req.body;
     prod.thumbnail = `${req.protocol}://${req.hostname}:${8080}/uploads/${file.filename}`;
@@ -32,7 +32,15 @@ router.post('/',upload.single('thumbnail'),authAdmin,(req,res)=>{
         if (result.status === 'success') res.status(200).json(result)
         else res.status(500).send(result)
         })
-    })
+    }) */
+
+    router.post('/',(req,res)=>{
+        let prod = req.body;
+        if(!prod.name) return res.send({status:"error",message:"datos incompletos"})
+        productService.registrarProd(prod).then(result=>{
+            res.send(result);
+        })
+    })    
 
 
 router.put('/',(req,res)=>{
