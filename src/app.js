@@ -87,7 +87,7 @@ app.get('/view/products',authAdmin, (req,res)=>{
 
 //socket
 io.on('connection', async socket=>{
-    console.log(`El socket ${socket.id} se ha conectado`)
+/*     console.log(`El socket ${socket.id} se ha conectado`) */
     let products = await contenedor.getAll();
     socket.emit('getProd',products);
 })
@@ -96,7 +96,7 @@ io.on('connection', async socket=>{
 let messages = [];
 
 io.on('connection',socket=>{
-    console.log(`Cliente ${socket.id} se ha conectado`)
+    console.log(`El Cliente ${socket.id} se ha conectado.`)
     socket.emit('messlog',messages);
     socket.on('message',data=>{
         messages.push(data)
@@ -108,7 +108,6 @@ io.on('connection',socket=>{
 const products = new Products(sqlite, 'chats')
 
 io.on('connection', socket => {
-    console.log('Cliente conectado.')
     products.getMessages().then(result => {
     if (result.status === 'success') {
         io.emit('chats', result.payload)

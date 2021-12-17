@@ -62,7 +62,7 @@ export default class Products{
     }
     registrarProd = async (prod) =>{
         try{
-            let existe = await this.database.table('products').select().where('name',prod.id).first();
+            let existe = await this.database.select().table('products').where('name',prod.name).first();
             if(existe) return {status:"error",message:"El producto ya existe."}
             let result = await this.database.table('products').insert(prod);
             return {status:"success",payload:`Producto creado con el id: ${result[0]}`}
@@ -106,7 +106,7 @@ export default class Products{
     
     async getMessages () {
         try {
-            const chats = await this.atabase.select().table('chats')
+            const chats = await this.database.select().table('chats')
             return { status: 'success', payload: chats }
         } catch (err) {
             console.log(`Error: ${err}`)
